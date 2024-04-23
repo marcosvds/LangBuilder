@@ -1,4 +1,4 @@
-#LangBuilder
+# LangBuilder - MusicScript
 
 ### Objetivo da Linguagem MusicScript
 **MusicScript** é uma linguagem de programação projetada para permitir aos usuários definir sequências de notas musicais, acordes e ritmos. Ela é especialmente útil para compositores iniciantes e programadores interessados em música, facilitando a experimentação musical e a composição automática.
