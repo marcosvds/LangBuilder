@@ -131,7 +131,3 @@ REPETIR(4) {
     PAUSA("semi");
 }
 ```
-
-### Observações Finais
-
-As instruções acima devem garantir que você consiga compilar e testar seu compilador para a linguagem MusicScript. Se houver quaisquer problemas ou erros, revise as regras léxicas e sintáticas para garantir que todos os tokens e padrões estão corretamente definidos.
