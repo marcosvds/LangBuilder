@@ -1,0 +1,410 @@
+Terminals unused in grammar
+
+    NOTENAME
+    BREVE
+    SEMI
+    MINIMA
+    SEMINIMA
+    COLCHEIA
+    SEMICOLCHEIA
+
+
+Grammar
+
+    0 $accept: programa $end
+
+    1 programa: ε
+    2         | programa instrucao
+
+    3 instrucao: nota
+    4          | acorde
+    5          | pausa
+    6          | repeticao
+
+    7 nota: NOTA '(' tom ',' duracao ')' ';'
+
+    8 acorde: ACORDE '(' lista_tons ',' duracao ')' ';'
+
+    9 pausa: PAUSA '(' duracao ')' ';'
+
+   10 repeticao: REPETIR '(' NUMERO ')' '{' programa '}'
+
+   11 lista_tons: tom
+   12           | lista_tons ',' tom
+
+   13 tom: STRING
+
+   14 duracao: STRING
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '(' (40) 7 8 9 10
+    ')' (41) 7 8 9 10
+    ',' (44) 7 8 12
+    ';' (59) 7 8 9
+    '{' (123) 10
+    '}' (125) 10
+    error (256)
+    NOTA <str> (258) 7
+    ACORDE <str> (259) 8
+    PAUSA <str> (260) 9
+    REPETIR <str> (261) 10
+    STRING <str> (262) 13 14
+    NOTENAME <str> (263)
+    BREVE <str> (264)
+    SEMI <str> (265)
+    MINIMA <str> (266)
+    SEMINIMA <str> (267)
+    COLCHEIA <str> (268)
+    SEMICOLCHEIA <str> (269)
+    NUMERO <num> (270) 10
+
+
+Nonterminals, with rules where they appear
+
+    $accept (22)
+        on left: 0
+    programa (23)
+        on left: 1 2
+        on right: 0 2 10
+    instrucao (24)
+        on left: 3 4 5 6
+        on right: 2
+    nota (25)
+        on left: 7
+        on right: 3
+    acorde (26)
+        on left: 8
+        on right: 4
+    pausa (27)
+        on left: 9
+        on right: 5
+    repeticao (28)
+        on left: 10
+        on right: 6
+    lista_tons <str> (29)
+        on left: 11 12
+        on right: 8 12
+    tom <str> (30)
+        on left: 13
+        on right: 7 11 12
+    duracao <str> (31)
+        on left: 14
+        on right: 7 8 9
+
+
+State 0
+
+    0 $accept: • programa $end
+
+    $default  reduce using rule 1 (programa)
+
+    programa  go to state 1
+
+
+State 1
+
+    0 $accept: programa • $end
+    2 programa: programa • instrucao
+
+    $end     shift, and go to state 2
+    NOTA     shift, and go to state 3
+    ACORDE   shift, and go to state 4
+    PAUSA    shift, and go to state 5
+    REPETIR  shift, and go to state 6
+
+    instrucao  go to state 7
+    nota       go to state 8
+    acorde     go to state 9
+    pausa      go to state 10
+    repeticao  go to state 11
+
+
+State 2
+
+    0 $accept: programa $end •
+
+    $default  accept
+
+
+State 3
+
+    7 nota: NOTA • '(' tom ',' duracao ')' ';'
+
+    '('  shift, and go to state 12
+
+
+State 4
+
+    8 acorde: ACORDE • '(' lista_tons ',' duracao ')' ';'
+
+    '('  shift, and go to state 13
+
+
+State 5
+
+    9 pausa: PAUSA • '(' duracao ')' ';'
+
+    '('  shift, and go to state 14
+
+
+State 6
+
+   10 repeticao: REPETIR • '(' NUMERO ')' '{' programa '}'
+
+    '('  shift, and go to state 15
+
+
+State 7
+
+    2 programa: programa instrucao •
+
+    $default  reduce using rule 2 (programa)
+
+
+State 8
+
+    3 instrucao: nota •
+
+    $default  reduce using rule 3 (instrucao)
+
+
+State 9
+
+    4 instrucao: acorde •
+
+    $default  reduce using rule 4 (instrucao)
+
+
+State 10
+
+    5 instrucao: pausa •
+
+    $default  reduce using rule 5 (instrucao)
+
+
+State 11
+
+    6 instrucao: repeticao •
+
+    $default  reduce using rule 6 (instrucao)
+
+
+State 12
+
+    7 nota: NOTA '(' • tom ',' duracao ')' ';'
+
+    STRING  shift, and go to state 16
+
+    tom  go to state 17
+
+
+State 13
+
+    8 acorde: ACORDE '(' • lista_tons ',' duracao ')' ';'
+
+    STRING  shift, and go to state 16
+
+    lista_tons  go to state 18
+    tom         go to state 19
+
+
+State 14
+
+    9 pausa: PAUSA '(' • duracao ')' ';'
+
+    STRING  shift, and go to state 20
+
+    duracao  go to state 21
+
+
+State 15
+
+   10 repeticao: REPETIR '(' • NUMERO ')' '{' programa '}'
+
+    NUMERO  shift, and go to state 22
+
+
+State 16
+
+   13 tom: STRING •
+
+    $default  reduce using rule 13 (tom)
+
+
+State 17
+
+    7 nota: NOTA '(' tom • ',' duracao ')' ';'
+
+    ','  shift, and go to state 23
+
+
+State 18
+
+    8 acorde: ACORDE '(' lista_tons • ',' duracao ')' ';'
+   12 lista_tons: lista_tons • ',' tom
+
+    ','  shift, and go to state 24
+
+
+State 19
+
+   11 lista_tons: tom •
+
+    $default  reduce using rule 11 (lista_tons)
+
+
+State 20
+
+   14 duracao: STRING •
+
+    $default  reduce using rule 14 (duracao)
+
+
+State 21
+
+    9 pausa: PAUSA '(' duracao • ')' ';'
+
+    ')'  shift, and go to state 25
+
+
+State 22
+
+   10 repeticao: REPETIR '(' NUMERO • ')' '{' programa '}'
+
+    ')'  shift, and go to state 26
+
+
+State 23
+
+    7 nota: NOTA '(' tom ',' • duracao ')' ';'
+
+    STRING  shift, and go to state 20
+
+    duracao  go to state 27
+
+
+State 24
+
+    8 acorde: ACORDE '(' lista_tons ',' • duracao ')' ';'
+   12 lista_tons: lista_tons ',' • tom
+
+    STRING  shift, and go to state 28
+
+    tom      go to state 29
+    duracao  go to state 30
+
+
+State 25
+
+    9 pausa: PAUSA '(' duracao ')' • ';'
+
+    ';'  shift, and go to state 31
+
+
+State 26
+
+   10 repeticao: REPETIR '(' NUMERO ')' • '{' programa '}'
+
+    '{'  shift, and go to state 32
+
+
+State 27
+
+    7 nota: NOTA '(' tom ',' duracao • ')' ';'
+
+    ')'  shift, and go to state 33
+
+
+State 28
+
+   13 tom: STRING •
+   14 duracao: STRING •
+
+    ')'       reduce using rule 14 (duracao)
+    $default  reduce using rule 13 (tom)
+
+
+State 29
+
+   12 lista_tons: lista_tons ',' tom •
+
+    $default  reduce using rule 12 (lista_tons)
+
+
+State 30
+
+    8 acorde: ACORDE '(' lista_tons ',' duracao • ')' ';'
+
+    ')'  shift, and go to state 34
+
+
+State 31
+
+    9 pausa: PAUSA '(' duracao ')' ';' •
+
+    $default  reduce using rule 9 (pausa)
+
+
+State 32
+
+   10 repeticao: REPETIR '(' NUMERO ')' '{' • programa '}'
+
+    $default  reduce using rule 1 (programa)
+
+    programa  go to state 35
+
+
+State 33
+
+    7 nota: NOTA '(' tom ',' duracao ')' • ';'
+
+    ';'  shift, and go to state 36
+
+
+State 34
+
+    8 acorde: ACORDE '(' lista_tons ',' duracao ')' • ';'
+
+    ';'  shift, and go to state 37
+
+
+State 35
+
+    2 programa: programa • instrucao
+   10 repeticao: REPETIR '(' NUMERO ')' '{' programa • '}'
+
+    NOTA     shift, and go to state 3
+    ACORDE   shift, and go to state 4
+    PAUSA    shift, and go to state 5
+    REPETIR  shift, and go to state 6
+    '}'      shift, and go to state 38
+
+    instrucao  go to state 7
+    nota       go to state 8
+    acorde     go to state 9
+    pausa      go to state 10
+    repeticao  go to state 11
+
+
+State 36
+
+    7 nota: NOTA '(' tom ',' duracao ')' ';' •
+
+    $default  reduce using rule 7 (nota)
+
+
+State 37
+
+    8 acorde: ACORDE '(' lista_tons ',' duracao ')' ';' •
+
+    $default  reduce using rule 8 (acorde)
+
+
+State 38
+
+   10 repeticao: REPETIR '(' NUMERO ')' '{' programa '}' •
+
+    $default  reduce using rule 10 (repeticao)

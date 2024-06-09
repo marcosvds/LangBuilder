@@ -1,0 +1,7 @@
+NOTA("C#", "semi");
+ACORDE("C#,E,G#", "seminima");
+PAUSA("colcheia");
+REPETIR(4) {
+    NOTA("F", "semicolcheia");
+    PAUSA("semi");
+}

@@ -1,0 +1,4 @@
+REPETIR(3) {
+    NOTA("D", "seminima");
+    ACORDE("D,F#,A", "minima");
+}

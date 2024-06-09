@@ -1,0 +1,10 @@
+NOTA("C", "seminima");
+NOTA("E", "seminima");
+NOTA("G", "seminima");
+ACORDE("C,E,G", "minima");
+PAUSA("semi");
+REPETIR(2) {
+    NOTA("E", "colcheia");
+    NOTA("G", "colcheia");
+    NOTA("C", "colcheia");
+}
