@@ -171,6 +171,5 @@ Passe 20 minutos em WRITING
 Passe 10 minutos em READING
 Passe 20 minutos em WRITING
 Passe 15 minutos em RESEARCH
-estudo concluído!
 Estudo finalizado.
 ```
