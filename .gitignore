@@ -15,12 +15,6 @@
 /__pycache__/
 /*.egg-info/
 
-# Ignore arquivos do Flex e Bison gerados
-*.tab.c
-*.tab.h
-lex.yy.c
-parser.output
-
 # Ignore logs, banco de dados e outros arquivos de ambiente
 *.log
 *.sql
@@ -46,9 +40,6 @@ Thumbs.db
 *.swp
 *.bak
 *.swo
-
-# Ignore o arquivo de compilação Flex/Bison
-FlexBison/mycompiler
 
 # Ignore env files
 .env
