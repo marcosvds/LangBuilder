@@ -1,0 +1,54 @@
+# Ignore arquivos compilados
+*.o
+*.exe
+*.out
+*.class
+*.jar
+*.pyc
+*.pyo
+*.pdb
+*.so
+
+# Ignore diretórios de build
+/build/
+/dist/
+/__pycache__/
+/*.egg-info/
+
+# Ignore arquivos do Flex e Bison gerados
+*.tab.c
+*.tab.h
+lex.yy.c
+parser.output
+
+# Ignore logs, banco de dados e outros arquivos de ambiente
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Ignore arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignore configurações de IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore arquivos de testes gerados
+/Testes/*.log
+/Testes/*.out
+
+# Ignore arquivos temporários
+*.tmp
+*.swp
+*.bak
+*.swo
+
+# Ignore o arquivo de compilação Flex/Bison
+FlexBison/mycompiler
+
+# Ignore env files
+.env
