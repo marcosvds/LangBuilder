@@ -54,19 +54,35 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    NOTA = 258,                    /* NOTA  */
-    ACORDE = 259,                  /* ACORDE  */
-    PAUSA = 260,                   /* PAUSA  */
-    REPETIR = 261,                 /* REPETIR  */
-    STRING = 262,                  /* STRING  */
-    NOTENAME = 263,                /* NOTENAME  */
-    BREVE = 264,                   /* BREVE  */
-    SEMI = 265,                    /* SEMI  */
-    MINIMA = 266,                  /* MINIMA  */
-    SEMINIMA = 267,                /* SEMINIMA  */
-    COLCHEIA = 268,                /* COLCHEIA  */
-    SEMICOLCHEIA = 269,            /* SEMICOLCHEIA  */
-    NUMERO = 270                   /* NUMERO  */
+    NUMBER = 258,                  /* NUMBER  */
+    IDENTIFIER = 259,              /* IDENTIFIER  */
+    STD = 260,                     /* STD  */
+    PRINT = 261,                   /* PRINT  */
+    READ = 262,                    /* READ  */
+    IF = 263,                      /* IF  */
+    ELSE = 264,                    /* ELSE  */
+    REPEAT = 265,                  /* REPEAT  */
+    OR = 266,                      /* OR  */
+    AND = 267,                     /* AND  */
+    EQ = 268,                      /* EQ  */
+    GT = 269,                      /* GT  */
+    LT = 270,                      /* LT  */
+    PLUS = 271,                    /* PLUS  */
+    MINUS = 272,                   /* MINUS  */
+    TIMES = 273,                   /* TIMES  */
+    DIVIDE = 274,                  /* DIVIDE  */
+    NOT = 275,                     /* NOT  */
+    READING = 276,                 /* READING  */
+    WRITING = 277,                 /* WRITING  */
+    EXERCISES = 278,               /* EXERCISES  */
+    LECTURES = 279,                /* LECTURES  */
+    RESEARCH = 280,                /* RESEARCH  */
+    NEWLINE = 281,                 /* NEWLINE  */
+    ASSIGN = 282,                  /* ASSIGN  */
+    LPAREN = 283,                  /* LPAREN  */
+    RPAREN = 284,                  /* RPAREN  */
+    LBRACE = 285,                  /* LBRACE  */
+    RBRACE = 286                   /* RBRACE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -75,12 +91,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 10 "parser.y"
+#line 17 "parser.y"
 
-    char *str;
-    int num;
+    char *identifier;
+    int number;
 
-#line 84 "parser.tab.h"
+#line 100 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

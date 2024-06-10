@@ -1,61 +1,117 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> // Inclua para strdup
+#include <string.h>
+
 void yyerror(const char *s);
-extern int yylex();
-#define YYDEBUG 1
+int yylex(void);
+
+typedef struct {
+    char *identifier;
+    int number;
+} YYSTYPE;
+
+#define YYSTYPE_IS_DECLARED 1
 %}
 
 %union {
-    char *str;
-    int num;
+    char *identifier;
+    int number;
 }
 
-%token <str> NOTA ACORDE PAUSA REPETIR
-%token <str> STRING NOTENAME BREVE SEMI MINIMA SEMINIMA COLCHEIA SEMICOLCHEIA
-%token <num> NUMERO
+%token <number> NUMBER
+%token <identifier> IDENTIFIER
 
-%type <str> tom duracao lista_tons
+%token STD PRINT READ IF ELSE REPEAT OR AND EQ GT LT PLUS MINUS TIMES DIVIDE NOT
+%token READING WRITING EXERCISES LECTURES RESEARCH
+%token NEWLINE ASSIGN LPAREN RPAREN LBRACE RBRACE
 
 %%
 
-programa: /* vazio */
-        | programa instrucao { printf("Instrucao reconhecida\n"); } ;
+program:
+    routines
+    ;
 
-instrucao: nota { printf("Nota reconhecida\n"); }
-         | acorde { printf("Acorde reconhecido\n"); }
-         | pausa { printf("Pausa reconhecida\n"); }
-         | repeticao { printf("Repeticao reconhecida\n"); } ;
+routines:
+    routines routine
+    | /* empty */
+    ;
 
-nota: NOTA '(' tom ',' duracao ')' ';' { printf("Nota: %s %s\n", $3, $5); free($3); free($5); } ;
+routine:
+    assignment NEWLINE
+    | print NEWLINE
+    | repeat NEWLINE
+    | if NEWLINE
+    | variable_declaration NEWLINE
+    | instruction NEWLINE
+    ;
 
-acorde: ACORDE '(' lista_tons ',' duracao ')' ';' { printf("Acorde: %s %s\n", $3, $5); free($3); free($5); } ;
+variable_declaration:
+    STD IDENTIFIER
+    | STD IDENTIFIER ASSIGN expression
+    ;
 
-pausa: PAUSA '(' duracao ')' ';' { printf("Pausa: %s\n", $3); free($3); } ;
+assignment:
+    IDENTIFIER ASSIGN expression
+    ;
 
-repeticao: REPETIR '(' NUMERO ')' '{' programa '}' { printf("Repetir %d vezes\n", $3); } ;
+print:
+    PRINT LPAREN expression RPAREN
+    ;
 
-lista_tons: tom
-          | lista_tons ',' tom { 
-                char *temp = malloc(strlen($1) + strlen($3) + 2);
-                sprintf(temp, "%s,%s", $1, $3);
-                $$ = temp;
-                free($1);
-                free($3);
-            } ;
+read:
+    READ LPAREN RPAREN
+    ;
 
-tom: STRING ;
+instruction:
+    activity_name LPAREN NUMBER RPAREN
+    ;
 
-duracao: STRING ;
+if:
+    IF LPAREN expression RPAREN NEWLINE LBRACE routines RBRACE
+    | IF LPAREN expression RPAREN NEWLINE LBRACE routines RBRACE ELSE NEWLINE LBRACE routines RBRACE
+    ;
+
+repeat:
+    REPEAT LPAREN NUMBER RPAREN NEWLINE LBRACE routines RBRACE
+    ;
+
+expression:
+    term
+    | expression PLUS term
+    | expression MINUS term
+    ;
+
+term:
+    factor
+    | term TIMES factor
+    | term DIVIDE factor
+    ;
+
+factor:
+    PLUS factor
+    | MINUS factor
+    | NOT factor
+    | NUMBER
+    | IDENTIFIER
+    | LPAREN expression RPAREN
+    | read
+    ;
+
+activity_name:
+    READING
+    | WRITING
+    | EXERCISES
+    | LECTURES
+    | RESEARCH
+    ;
 
 %%
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error: %s\n", s);
+    fprintf(stderr, "Erro: %s\n", s);
 }
 
-int main(void) {
-    yydebug = 1;
+int main() {
     return yyparse();
 }
