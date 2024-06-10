@@ -173,3 +173,8 @@ Passe 20 minutos em WRITING
 Passe 15 minutos em RESEARCH
 Estudo finalizado.
 ```
+
+## Apresentação
+
+Você pode acessar a apresentação detalhada sobre a LangBuilder através do [link da apresentação](https://www.canva.com/design/DAGCKpLARAs/tZdzxgSIxq5ekZCwYsUovQ/edit?utm_content=DAGCKpLARAs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton).
+
