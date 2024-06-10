@@ -1,3 +1,0 @@
-NOTA("G", "semicolcheia");
-PAUSA("minima");
-ACORDE("B,D#,F#", "colcheia");

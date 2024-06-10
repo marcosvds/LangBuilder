@@ -1,0 +1,22 @@
+// Impressão de mensagem
+print("Iniciando estudo.");
+
+// Declaração de variáveis
+std num_sessao = 3;
+std tempo_leitura = 12;
+
+// Loop de repetição
+repeat(num_sessao) {
+    reading(tempo_leitura);
+    research(25);
+}
+
+// Condicional
+if (tempo_leitura > 10) {
+    exercises(30);
+} else {
+    writing(20);
+}
+
+// Impressão de mensagem
+print("Estudo finalizado.");

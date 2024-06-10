@@ -1,4 +1,0 @@
-ACORDE("A,C,E", "minima");
-PAUSA("breve");
-NOTA("F#", "colcheia");
-NOTA("G#", "colcheia");

@@ -1,0 +1,22 @@
+// Impressão de mensagem
+print("Iniciando estudo.");
+
+// Declaração de variáveis
+std num_sessao = 2;
+std paginas_por_sessao = 10;
+
+// Loop de repetição
+repeat(num_sessao) {
+    reading(paginas_por_sessao);
+    writing(20);
+}
+
+// Condicional
+if (paginas_por_sessao > 5) {
+    research(15);
+} else {
+    exercises(30);
+}
+
+// Impressão de mensagem
+print("Estudo finalizado.");
